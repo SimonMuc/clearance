@@ -41,6 +41,10 @@ Port pair **8795 / 8450** was checked free on the server on 2026-09-08. The app 
 
 App URL: https://website.tailf4e733.ts.net:8450
 
+Deployed on 2026-09-08. HTTPS health and the OS dashboard widget were verified. The initial board is empty. API/storage checks and the desktop/iPhone workflows passed in Chromium and WebKit.
+
+For later updates, push your commits and run `update-clearance` from a new terminal (or run `source ~/.zshrc` once in an existing terminal). This shell function forwards only Clearance's key and remains usable after renaming the local project folder. The initial-installation script remains available as `sh scripts/deploy.sh`.
+
 OS registration: name **Clearance**, icon **◻**, open URL **:8450**, widget URL **http://127.0.0.1:8795/api/widget**, blurb **A little space for what matters.** The widget shows the number of visible thoughts and up to four titles. The header links back to OS.
 
 Proposed parent registry row (the parent file is outside this site's edit boundary):
@@ -60,3 +64,7 @@ Operational references inspected: `../CLAUDE.md`, Three Things' container patter
 - `GET /healthz` returns `ok`.
 
 No permanent-delete route is provided.
+
+## Backing up
+
+The server database is `/root/clearance/data/clearance.sqlite`. For a simple full backup, stop only this app with `docker compose stop`, copy its entire `data/` directory to a dated backup location, then run `docker compose start`. Restore with the app stopped too. Copy backups off the server. Do not copy only the main SQLite file while it is being written, because recent changes may be in its WAL file.
