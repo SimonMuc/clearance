@@ -1,0 +1,14 @@
+services:
+  clearance:
+    build:
+      context: .
+      network: host
+    container_name: clearance
+    restart: unless-stopped
+    network_mode: host
+    env_file: .env
+    environment:
+      HOST: 127.0.0.1
+      DATA_DIR: /app/data
+    volumes:
+      - ./data:/app/data

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="description" content="A little space for what matters. Your personal whiteboard.">
+  <title>Clearance</title>
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/icon-180.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/app.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header>
+    <div class="identity"><a id="os-link" href="https://website.tailf4e733.ts.net" aria-label="Back to OS">⌂ OS</a><span class="divider"></span><h1>Clearance<span class="brand-dot">.</span></h1></div>
+    <nav aria-label="Board controls"><button id="archive-button">Set aside <span id="archive-count">0</span></button><button id="add-button" class="add-button"><span aria-hidden="true">＋</span> Add a thought</button></nav>
+  </header>
+  <main>
+    <div class="board-heading"><p>A little space for what matters.</p><span id="count" aria-live="polite"></span></div>
+    <section id="board" aria-label="Your whiteboard" tabindex="0">
+      <div id="empty" hidden><span class="empty-mark" aria-hidden="true">＋</span><h2>What needs to stay in view?</h2><p>Something to do. Something to think about.<br>A few words you don’t want to lose.</p><button id="first-button">Write your first thought <span aria-hidden="true">↗</span></button></div>
+      <div id="entries"></div>
+      <form id="composer" hidden><label class="sr-only" for="quick-title">Your thought</label><textarea id="quick-title" rows="2" maxlength="240" placeholder="What’s on your mind?"></textarea><div><span>Enter to keep · Esc to cancel</span><button type="submit" aria-label="Keep thought">↵</button></div><p id="compose-error" role="alert"></p></form>
+    </section>
+    <footer><span id="board-hint">Click anywhere to write. Everything finds its place.</span><span id="save-state" role="status">Your space. At your pace.</span></footer>
+  </main>
+  <div id="context-menu" role="menu" hidden><button role="menuitem" id="context-edit">Rename <span>↗</span></button><button role="menuitem" id="context-archive">Set aside <span>✓</span></button></div>
+  <dialog id="detail-dialog" aria-labelledby="detail-heading"><form id="detail-form">
+    <div class="dialog-top"><span id="detail-heading">Your thought</span><button type="button" class="close" aria-label="Close thought">×</button></div>
+    <label class="sr-only" for="detail-title">Title</label><textarea id="detail-title" rows="3" maxlength="240" required></textarea>
+    <p id="detail-error" role="alert"></p><div class="dialog-bottom"><button type="button" id="set-aside">✓ Set aside</button><button class="primary" type="submit">Save changes</button></div>
+  </form></dialog>
+  <dialog id="archive-dialog" aria-labelledby="archive-heading"><div class="dialog-top"><h2 id="archive-heading">Set aside</h2><button type="button" class="close" aria-label="Close archive">×</button></div><p class="archive-intro">Off your board. Here if you need it again.</p><div id="archive-list"></div></dialog>
+  <div id="toast" role="status" hidden><span></span><button id="undo-button" hidden>Undo</button><button id="dismiss-toast" aria-label="Dismiss message">×</button></div>
+</body>
+</html>
