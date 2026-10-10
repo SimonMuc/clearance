@@ -38,6 +38,7 @@ test('HTTP entry workflow, OS widget, and rejected cross-origin writes', async (
     const res = await request('/api/entries', { title: '<script>literal text</script>' });
     assert.equal(res.status, 201); const entry = await res.json();
     const widget = await (await fetch(base + '/api/widget')).json();
+    assert.deepEqual(await (await fetch(base + '/api/links')).json(), { module: 'clearance', links: [] });   // for Atlas's map
     assert.equal(widget.value, '1'); assert.equal(widget.lines[0], entry.title);
     assert.equal((await request(`/api/entries/${entry.id}`, { archived: true }, 'PATCH')).status, 200);
     assert.equal((await (await fetch(base + '/api/widget')).json()).value, '0');

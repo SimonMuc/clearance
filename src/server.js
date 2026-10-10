@@ -38,6 +38,7 @@ export function createApp({ store, appUrl = process.env.APP_URL || '', osUrl = p
       if (route === '/api/entries' && req.method === 'POST') return send(201, store.add(await readJson(req)));
       const match = /^\/api\/entries\/([a-f0-9-]+)$/.exec(route);
       if (match && req.method === 'PATCH') return send(200, store.update(match[1], await readJson(req)));
+      if (route === '/api/links' && req.method === 'GET') return send(200, { module: 'clearance', links: [] });   // for Atlas's map
       if (route === '/api/widget' && req.method === 'GET') {
         const entries = store.list().filter(e => !e.archived);
         return send(200, { title: 'In view', state: entries.length ? 'ok' : 'idle', value: String(entries.length), lines: entries.slice(0, 4).map(e => e.title.slice(0, 120)), url: '/' });
